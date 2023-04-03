@@ -3,10 +3,10 @@ session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["utype"] == "client"){
-        header("location: client-dashboard.php");
+        header("location: ../clientPages/client-dashboard.php");
     }
     else if($_SESSION["utype"] == "admin"){
-        header("location: admin-dashboard.php");
+        header("location: ../adminPages/admin-dashboard.php");
     }
     exit;
 }
@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../Style/style.css">
 	</head>
 	<body>
 	<section class="ftco-section">

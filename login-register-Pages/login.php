@@ -3,15 +3,15 @@ session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["utype"] == "client"){
-        header("location: client-dashboard.php");
+        header("location: ../clientPages/client-dashboard.php");
     }
     else if($_SESSION["utype"] == "admin"){
-        header("location: admin-dashboard.php");
+        header("location: ../adminPages/admin-dashboard.php");
     }
     exit;
 }
 
-require_once("db-connect.php");
+require_once("../include/db-connect.php");
 
 $username = $password = "";
 $username_error = $password_error = "";
@@ -48,10 +48,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["utype"] = $row["utype"];
 
                         if($_SESSION["utype"] == "client"){
-                            header("location: client-dashboard.php");
+                            header("location: ../clientPages/client-dashboard.php");
                         }
                         else if($_SESSION["utype"] == "admin"){
-                            header("location: admin-dashboard.php");
+                            header("location: ../adminPages/admin-dashboard.php");
                         }
                     }
                     else{
@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../Style/style.css">
 
 	</head>
 	<body>

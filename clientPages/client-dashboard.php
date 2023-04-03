@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ../login-register-pages/login.php");
     exit;
 }
 ?>
@@ -20,49 +20,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Client Dashboard</title>
-    <style>
-        .container{
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .header{
-            height:80px;
-            /* background-color: #2596be; */
-            display: flex;
-            align-items: center;
-            color: #eeeee4;
-            justify-content: space-between;
-            padding-left: 20px;
-            padding-right: 20px;
-            margin-bottom: 70px;
-        }
-        i{
-            margin-right: 10px;
-            margin-left: 20px;
-        }
-        .header > div > a{
-            background-color: black;
-            padding: 12px;
-            padding-left: 0px;
-            color: #eeeee4;
-            border-radius: 10px;
-            border: 0;
-            margin-left: 20px;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="../Style/style2.css">
 </head>
 <body>
     <div class="header sticky-top bg-primary">
         <h2 class="title">Online Restaurant</h2>
         <div>
-            <a href="logout.php" class="bg-danger"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Logout</a>
-            <a href="change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
+            <a href="../login-register-Pages/logout.php" class="bg-danger"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Logout</a>
+            <a href="../login-register-Pages/change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
         </div>
     </div>
     <?php
-    require_once("db-connect.php");
+    require_once("../include/db-connect.php");
     $sql = "SELECT * FROM plats";
     if($query = $db-> prepare($sql)){
         if($query-> execute()){

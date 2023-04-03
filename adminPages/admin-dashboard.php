@@ -1,6 +1,11 @@
 <?php
 session_start();
-require_once '../db-connect.php';
+require_once '../include/db-connect.php';
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  || $_SESSION["utype"] === "client"){
+    header("location: ../login-register-Pages/login.php");
+    exit;
+}
 
 $result = $db->query("SELECT COUNT(*) as count FROM plats");
 $row = $result->fetch_assoc();
@@ -25,49 +30,60 @@ $completed_commandes_count = $row3["count"];
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d644c28068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="adminDashboardStyle.css">
+    <link rel="stylesheet" href="../Style/style2.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-xl-3">
-                <div class="card bg-c-blue order-card">
-                    <div class="card-block">
-                        <h6 class="m-b-20">Carte</h6>
-                        <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span></span></h2>
-                        <p class="m-b-0">Menu des plats<span class="f-right"><?php echo $plats_count; ?></span></p>
-                        <a href="gestion-plats.php"><button>Accéder</button></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xl-3">
-                <div class="card bg-c-green order-card">
-                    <div class="card-block">
-                        <h6 class="m-b-20">Plat du jour</h6>
-                        <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span></span></h2>
-                        <p class="m-b-0"><span class="f-right"></span></p>
-                        <a href="plat-du-jour.php"><button>Accéder</button></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xl-3">
-                <div class="card bg-c-yellow order-card">
-                    <div class="card-block">
-                        <h6 class="m-b-20">Commandes reçus</h6>
-                        <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><?php echo $commandes_count; ?></span></h2>
-                        <p class="m-b-0">Completed Orders<span class="f-right"><?php echo $completed_commandes_count; ?></span></p>
-                        <a href="gestion-commandes.php"><button>Accéder</button></a>
-                    </div>
-                </div>
-            </div>
-
+    <div class="header sticky-top bg-primary" style="margin-bottom: 10px;">
+        <h2 class="title">Online Restaurant</h2>
+        <div>
+            <a href="../login-register-Pages/logout.php" class="bg-danger"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Logout</a>
+            <a href="../login-register-Pages/change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
         </div>
+    </div>
+
+    <div class="d-flex flex-column align-content-end me-5 pe-5 fs-5 flex-wrap" style="margin-right: 15% !important;">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-blue order-card h-100">
+                <div class="card-block">
+                    <h2 class="m-b-20">Carte</h2>
+                    <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span></span></h2>
+                    <p class="m-b-0">Menu des plats<span class="f-right"><?php echo $plats_count; ?></span></p>
+                    <a href="gestion-plats.php"><button>Accéder</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card h-100">
+                <div class="card-block">
+                    <h2 class="m-b-20">Plat du jour</h2>
+                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span></span></h2>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                    <a href="plat-du-jour.php"><button>Changer</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card h-100">
+                <div class="card-block">
+                    <h2 class="m-b-20">Commandes reçues</h2>
+                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><?php echo $commandes_count; ?></span></h2>
+                    <p class="m-b-0">Completed Orders<span class="f-right"><?php echo $completed_commandes_count; ?></span></p>
+                    <a href="gestion-commandes.php"><button>Accéder</button></a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
