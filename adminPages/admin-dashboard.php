@@ -42,7 +42,7 @@ $completed_commandes_count = $row3["count"];
 </head>
 <body>
 
-    <div class="header sticky-top bg-primary" style="margin-bottom: 10px;">
+    <div class="header sticky-top bg-primary">
         <h2 class="title">Online Restaurant</h2>
         <div>
             <a href="../login-register-Pages/logout.php" class="bg-danger"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Logout</a>
@@ -50,11 +50,11 @@ $completed_commandes_count = $row3["count"];
         </div>
     </div>
 
-    <div class="d-flex flex-column align-content-end me-5 pe-5 fs-5 flex-wrap" style="margin-right: 15% !important;">
+    <div class="d-flex flex-row justify-content-center fs-4 flex-wrap column-gap-5">
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-blue order-card h-100">
                 <div class="card-block">
-                    <h2 class="m-b-20">Carte</h2>
+                    <h1 class="m-b-20">Carte</h1>
                     <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span></span></h2>
                     <p class="m-b-0">Menu des plats<span class="f-right"><?php echo $plats_count; ?></span></p>
                     <a href="gestion-plats.php"><button>Accéder</button></a>
@@ -65,7 +65,7 @@ $completed_commandes_count = $row3["count"];
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-green order-card h-100">
                 <div class="card-block">
-                    <h2 class="m-b-20">Plat du jour</h2>
+                    <h1 class="m-b-20">Plat du jour</h1>
                     <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span></span></h2>
                     <p class="m-b-0"><span class="f-right"></span></p>
                     <a href="plat-du-jour.php"><button>Changer</button></a>
@@ -76,7 +76,7 @@ $completed_commandes_count = $row3["count"];
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-yellow order-card h-100">
                 <div class="card-block">
-                    <h2 class="m-b-20">Commandes reçues</h2>
+                    <h1 class="m-b-20">Commandes reçues</h1>
                     <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><?php echo $commandes_count; ?></span></h2>
                     <p class="m-b-0">Completed Orders<span class="f-right"><?php echo $completed_commandes_count; ?></span></p>
                     <a href="gestion-commandes.php"><button>Accéder</button></a>
