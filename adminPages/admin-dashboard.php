@@ -40,6 +40,7 @@ $completed_commandes_count = $row3["count"];
                         <h6 class="m-b-20">Carte</h6>
                         <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span></span></h2>
                         <p class="m-b-0">Menu des plats<span class="f-right"><?php echo $plats_count; ?></span></p>
+                        <a href="gestion-plats.php"><button>Accéder</button></a>
                     </div>
                 </div>
             </div>
@@ -50,6 +51,7 @@ $completed_commandes_count = $row3["count"];
                         <h6 class="m-b-20">Plat du jour</h6>
                         <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span></span></h2>
                         <p class="m-b-0"><span class="f-right"></span></p>
+                        <a href="plat-du-jour.php"><button>Accéder</button></a>
                     </div>
                 </div>
             </div>
@@ -60,6 +62,7 @@ $completed_commandes_count = $row3["count"];
                         <h6 class="m-b-20">Commandes reçus</h6>
                         <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><?php echo $commandes_count; ?></span></h2>
                         <p class="m-b-0">Completed Orders<span class="f-right"><?php echo $completed_commandes_count; ?></span></p>
+                        <a href="gestion-commandes.php"><button>Accéder</button></a>
                     </div>
                 </div>
             </div>
