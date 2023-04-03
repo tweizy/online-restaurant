@@ -2,7 +2,12 @@
 session_start();
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: dashboard.php");
+    if($_SESSION["utype"] == "client"){
+        header("location: client-dashboard.php");
+    }
+    else if($_SESSION["utype"] == "admin"){
+        header("location: admin-dashboard.php");
+    }
     exit;
 }
 
@@ -42,7 +47,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["email"] = $row["email"];
                         $_SESSION["utype"] = $row["utype"];
 
-                        header("location: dashboard.php");
+                        if($_SESSION["utype"] == "client"){
+                            header("location: client-dashboard.php");
+                        }
+                        else if($_SESSION["utype"] == "admin"){
+                            header("location: admin-dashboard.php");
+                        }
                     }
                     else{
                         $login_error = "Invalid username or password";
