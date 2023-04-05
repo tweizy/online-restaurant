@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h1 class="heading-section">TO DO APP</h1>
+					<h1 class="heading-section">Online Restaurant</h1>
 				</div>
 			</div>
 			<div class="row justify-content-center">

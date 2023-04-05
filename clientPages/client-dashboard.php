@@ -41,7 +41,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 while($row = $result->fetch_array()){
                     ?> 
                     <div class="card" style="width: 18rem; margin-right: 30px">
-                    <img style="max-height: 300px" class="card-img-top" src="img/<?php echo $row["pname"] ?>" alt="<?php echo $row["pname"] ?>">
+                    <img style="max-height: 300px" class="card-img-top" src="../img/<?php echo $row["pname"] ?>.jpg" alt="<?php echo $row["pname"] ?>">
                     <div class="card-body">
                         <div>
                             <h5 class="card-title"><?php echo $row["pname"] ?></h5>

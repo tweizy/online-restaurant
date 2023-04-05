@@ -1,4 +1,8 @@
 
+body {
+    padding-bottom: 100px;
+}
+
 .order-card {
     color: #fff;
 }
@@ -44,4 +48,9 @@
 
 .f-right {
     float: right;
+}
+
+.order-card {
+    margin-bottom: -8px;
+    z-index: -1;
 }
