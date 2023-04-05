@@ -2,7 +2,9 @@
 require_once '../include/db-connect.php';
 require_once 'adminSessionCheck.php';
 
-if (isset($_GET["id"])) { ?>
+if (isset($_GET["id"])) {
+    $prepared_update_stmt = $db->prepare("UPDATE plats SET pname = ?, pdescription = ?, ptype = ?, price = ? WHERE pid = " . $_GET["id"]);
+    ?>
 
 <!doctype html>
 <html lang="en">
@@ -39,7 +41,7 @@ if (isset($_GET["id"])) { ?>
         </div>
     </div>
 
-    <div class="ps-5">
+    <div class="ps-5 pe-5">
         <h1>Changer les informations du plat</h1>
         <form method="post" action="">
             <?php
@@ -51,6 +53,8 @@ if (isset($_GET["id"])) { ?>
                 $desc_plat = $row["pdescription"];
                 $type_plat = $row["ptype"];
                 $prix = $row["price"];
+
+                $result->close();
             }
             else {
                 echo "Ce plat n'existe pas!";
@@ -60,30 +64,53 @@ if (isset($_GET["id"])) { ?>
 
             <div class="form-group">
                 <label for="nom">Nom du plat</label>
-                <input type="text" class="form-control" id="nom">
+                <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom_plat; ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description"></textarea>
+                <textarea class="form-control" id="description" name="desc"><?php echo $desc_plat; ?></textarea>
             </div>
             <div class="form-group">
                 <label for="type">Type du plat</label>
-                <select class="form-control" id="type">
+                <select class="form-control" name="type" id="type">
                     <?php
                     $result2 = $db->query("SELECT DISTINCT ptype FROM plats");
                     while ($row = $result2->fetch_assoc()) {
                         $type = $row["ptype"];
-                        echo "<option value='$type'>$type</option>";
+                        if ($type == $type_plat) {
+                            echo "<option value='$type' selected>$type</option>";
+                        }
+                        else {
+                            echo "<option value='$type'>$type</option>";
+                        }
                     }
                     ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="prix">Prix</label>
-                <input type="number" class="form-control" id="prix" step="0.01">
+                <input type="number" class="form-control" id="prix" step="0.01" name="prix" value="<?php echo $prix; ?>">
             </div>
+            <button type="submit" class="btn btn-primary">Changer</button>
         </form>
     </div>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+        $new_name = $_POST["nom"];
+        $new_desc = $_POST["desc"];
+        $new_type = $_POST["type"];
+        $new_prix = $_POST["prix"];
+
+        $prepared_update_stmt->bind_param('sssd', $new_name, $new_desc, $new_type, $new_prix);
+        $success = $prepared_update_stmt->execute();
+
+        if ($success) {
+            header('location: gestion-plats.php?plateChanged=true');
+            exit();
+        }
+    }
+    ?>
 </body>
 </html>
 

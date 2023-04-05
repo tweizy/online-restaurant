@@ -5,9 +5,9 @@ require_once "adminSessionCheck.php";
 if (isset($_GET["id"])) {
     $id_plat = $_GET["id"];
 
-    $stmt1 = $pdo->prepare("DELETE FROM plats WHERE pid = ?");
-
-    $success1 = $stmt1->execute([$id_plat]);
+    $stmt1 = $db->prepare("DELETE FROM plats WHERE pid = ?");
+    $stmt1->bind_param('i', $id_plat);
+    $success1 = $stmt1->execute();
 
     if ($success1) {
         header("location: gestion-plats.php?plateDeleted=true");

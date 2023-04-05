@@ -15,6 +15,12 @@ require_once '../include/db-connect.php';
     <script src="https://kit.fontawesome.com/b72eda9c8f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../Style/style2.css">
     <title>Gestion des plats</title>
+
+    <style>
+        body {
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="header sticky-top bg-primary">
@@ -25,29 +31,39 @@ require_once '../include/db-connect.php';
         </div>
     </div>
 
-    <div class="container p-3">
-        <h1 class="mb-4">Plats</h1>
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>Nom</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th></th>
-            </tr>
-            <?php
-            $result = $db->query("SELECT * FROM plats");
-            while ($row = $result->fetch_assoc()) {
-                $pid = $row["pid"];
-                $name = $row["pname"];
-                $type = $row["ptype"];
-                $description = $row["pdescription"];
-                $price = $row["price"];
+    <?php
+    if (isset($_GET["plateChanged"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Informations changées avec succès</div>";
+    if (isset($_GET["plateDeleted"])) echo "<div class='alert alert-danger mx-auto' style='width: 80vh;'>Plat supprimé avec succès</div>";
 
-                echo "<tr><td>$name</td><td>$type</td><td>$description</td><td>$price</td><td><a class='me-3' href='changer-plat.php?id=$pid'><i class='fa-solid fa-pen-to-square fa-lg' style='color: #00ad00;'></i></a><a href='supprimer-plat.php?id=$pid'><i class='fa-solid fa-trash fa-lg' style='color: #ff0000;'></a></td></tr>";
+    $sql = "SELECT * FROM plats";
+    if($query = $db-> prepare($sql)){
+    if($query-> execute()){
+    $result = $query-> get_result();
+    if($result-> num_rows > 0){
+    echo "<div class='container'>";
+        while($row = $result->fetch_array()){
+        ?>
+        <div class="card" style="width: 18rem; margin-right: 30px">
+            <img style="max-height: 300px" class="card-img-top" src="../img/<?php echo $row["pname"] ?>.jpg" alt="<?php echo $row["pname"] ?>">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"><?php echo $row["pname"] ?></h5>
+                    <p style="background-color: red; color: white; border-radius: 10px; width: 70px; text-align: center"><?php echo $row["ptype"] ?></p>
+                </div>
+                <p class="card-text"><?php echo $row["pdescription"] ?></p>
+                <p><?php echo $row["price"]."$" ?></p>
+                <div class="d-flex flex-column gap-1">
+                    <a href="<?php echo "changer-plat.php?id=" . $row["pid"]; ?>"><button class="btn btn-primary w-100"><i class='fa-solid fa-pen-to-square fa-lg ms-0'></i>Changer les informations</button></a>
+                    <a href="<?php echo "supprimer-plat.php?id=" . $row["pid"]; ?>"><button class="btn btn-danger w-100"><i class='fa-solid fa-trash fa-lg ms-0'></i>Supprimer ce plat</button></a>
+                </div>
+            </div>
+        </div>
+        <?php
+                }
+                echo "</div>";
             }
-            ?>
-        </table>
-    </div>
+        }
+    }
+    ?>
 </body>
 </html>

@@ -21,6 +21,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
     <title>Client Dashboard</title>
     <link rel="stylesheet" href="../Style/style2.css">
+    <style>
+        body {
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="header sticky-top bg-primary">
@@ -30,6 +35,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <a href="../login-register-Pages/change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
         </div>
     </div>
+    <div class="container"><h1 style="margin-top: -2rem; margin-bottom: 2rem;">Menu des Plats</h1></div>
+
+
     <?php
     require_once("../include/db-connect.php");
     $sql = "SELECT * FROM plats";
@@ -50,7 +58,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <p class="card-text"><?php echo $row["pdescription"] ?></p>
                         <div>
                             <p><?php echo $row["price"]."$" ?></p>
-                            <a href="#" class="btn btn-primary">Buy</a>
+                            <a href="#" class="btn btn-primary">Commander</a>
                         </div>
                     </div>
                     </div>
