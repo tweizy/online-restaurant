@@ -10,4 +10,7 @@
         }
         exit;
     }
+    else {
+        header("location: login-register-Pages/login.php");
+    }
 ?>
