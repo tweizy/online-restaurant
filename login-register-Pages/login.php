@@ -58,10 +58,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $login_error = "Invalid username or password";
                     }
                 }
+                else{
+                    $login_error = "Invalid username or password";
+                }
             }
-            else{
-                $login_error = "Invalid username or password";
-            }
+
         }
         else{
             echo "Oops, something went wrong";

@@ -60,6 +60,10 @@ if ($res4->num_rows > 0) {
         </div>
     </div>
 
+    <?php
+    if (isset($_GET["PDJ_changed"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Plat du jour changé avec succès</div>";
+    ?>
+
     <div class="d-flex flex-row justify-content-center fs-4 flex-wrap column-gap-5">
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-blue order-card h-100">
