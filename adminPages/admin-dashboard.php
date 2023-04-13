@@ -61,7 +61,7 @@ if ($res4->num_rows > 0) {
     </div>
 
     <?php
-    if (isset($_GET["PDJ_changed"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Plat du jour changé avec succès</div>";
+    if (isset($_GET["PDJ_changed"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh; margin-top: -40px;'>Plat du jour changé avec succès</div>";
     ?>
 
     <div class="d-flex flex-row justify-content-center fs-4 flex-wrap column-gap-5">
