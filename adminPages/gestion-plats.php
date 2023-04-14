@@ -23,7 +23,7 @@ require_once '../include/db-connect.php';
     </style>
 </head>
 <body>
-    <div class="header sticky-top bg-primary">
+    <div class="header sticky-top bg-primary mb-5">
         <h2 class="title">Online Restaurant</h2>
         <div>
             <a href="../login-register-Pages/logout.php" class="bg-danger"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Logout</a>
@@ -33,8 +33,20 @@ require_once '../include/db-connect.php';
 
     <?php
     if (isset($_GET["plateChanged"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Informations changées avec succès</div>";
+    if (isset($_GET["plateAdded"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Plat ajouté avec succès</div>";
     if (isset($_GET["plateDeleted"])) echo "<div class='alert alert-danger mx-auto' style='width: 80vh;'>Plat supprimé avec succès</div>";
+    ?>
 
+    <div class="container mb-2">
+        <a href="ajouter-plat.php">
+            <button class="btn btn-success fs-4">
+                <i class="fa-sharp fa-solid fa-plus ms-0"></i><span>Ajouter un plat</span>
+            </button>
+        </a>
+
+    </div>
+
+    <?php
     $sql = "SELECT * FROM plats";
     if($query = $db-> prepare($sql)){
     if($query-> execute()){
@@ -51,7 +63,7 @@ require_once '../include/db-connect.php';
                     <p style="background-color: red; color: white; border-radius: 10px; width: 70px; text-align: center"><?php echo $row["ptype"] ?></p>
                 </div>
                 <p class="card-text"><?php echo $row["pdescription"] ?></p>
-                <p><?php echo $row["price"]."$" ?></p>
+                <p style="font-weight: bold;"><?php echo $row["price"]."$" ?></p>
                 <div class="d-flex flex-column gap-1">
                     <a href="<?php echo "changer-plat.php?id=" . $row["pid"]; ?>"><button class="btn btn-primary w-100"><i class='fa-solid fa-pen-to-square fa-lg ms-0'></i>Changer les informations</button></a>
                     <a href="<?php echo "supprimer-plat.php?id=" . $row["pid"]; ?>"><button class="btn btn-danger w-100"><i class='fa-solid fa-trash fa-lg ms-0'></i>Supprimer ce plat</button></a>

@@ -57,7 +57,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         </div>
                         <p class="card-text"><?php echo $row["pdescription"] ?></p>
                         <div>
-                            <p><?php echo $row["price"]."$" ?></p>
+                            <p style="font-weight: bold;"><?php echo $row["price"]."$" ?></p>
                             <a href="#" class="btn btn-primary">Commander</a>
                         </div>
                     </div>
