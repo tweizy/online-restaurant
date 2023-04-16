@@ -55,7 +55,7 @@ require_once '../include/db-connect.php';
     echo "<div class='container'>";
         while($row = $result->fetch_array()){
         ?>
-        <div class="card" style="width: 18rem; margin-right: 30px">
+        <div class="card" style="width: 18rem; margin-right: 30px; margin-bottom: 30px">
             <img style="max-height: 300px" class="card-img-top" src="../img/<?php echo $row["pname"] ?>.jpg" alt="<?php echo $row["pname"] ?>">
             <div class="card-body">
                 <div>

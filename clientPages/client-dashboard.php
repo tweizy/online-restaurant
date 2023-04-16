@@ -5,6 +5,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../login-register-pages/login.php");
     exit;
 }
+
+require_once("../include/db-connect.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
+    
     <div class="header sticky-top bg-primary">
         <h2 class="title">Online Restaurant</h2>
         <div>
@@ -35,12 +39,32 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <a href="../login-register-Pages/change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
         </div>
     </div>
+    <div class="container"><h1 style="margin-top: -2rem; margin-bottom: 2rem;">Plat du jour</h1></div>
+    <?php
+        $result2 = $db->query("SELECT * FROM plats WHERE ptype ='plat du jour'");
+        while ($row = $result2->fetch_assoc()) {?>
+            <div class="card" style="width: 18rem; margin-right: 30px; margin-bottom: 30px">
+                    <img style="max-height: 300px" class="card-img-top" src="../img/<?php echo $row["pname"] ?>.jpg" alt="<?php echo $row["pname"] ?>">
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title"><?php echo $row["pname"] ?></h5>
+                            <p style="background-color: red; color: white; border-radius: 10px; width: 70px; text-align: center"><?php echo $row["ptype"] ?></p>
+                        </div>
+                        <p class="card-text"><?php echo $row["pdescription"] ?></p>
+                        <div>
+                            <p style="font-weight: bold;"><?php echo $row["price"]."$" ?></p>
+                            <a href="#" class="btn btn-primary">Commander</a>
+                        </div>
+                    </div>
+                    </div>
+                    <?php
+        }
+    ?>
     <div class="container"><h1 style="margin-top: -2rem; margin-bottom: 2rem;">Menu des Plats</h1></div>
 
 
     <?php
-    require_once("../include/db-connect.php");
-    $sql = "SELECT * FROM plats";
+    $sql = "SELECT * FROM plats WHERE ptype != 'plat du jour'";
     if($query = $db-> prepare($sql)){
         if($query-> execute()){
             $result = $query-> get_result();

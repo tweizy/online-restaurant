@@ -73,17 +73,21 @@ if (isset($_GET["id"])) {
             <div class="form-group">
                 <label for="type">Type du plat</label>
                 <select class="form-control" name="type" id="type">
+                    <option value="plat">Plat</option>
+                    <option value="sandwich">Sandwich</option>
+                    <option value="plat du jout">Plat du Jour</option>
+                    <option value="plat">Plat</option>
                     <?php
-                    $result2 = $db->query("SELECT DISTINCT ptype FROM plats");
-                    while ($row = $result2->fetch_assoc()) {
-                        $type = $row["ptype"];
-                        if ($type == $type_plat) {
-                            echo "<option value='$type' selected>$type</option>";
-                        }
-                        else {
-                            echo "<option value='$type'>$type</option>";
-                        }
-                    }
+                    // $result2 = $db->query("SELECT DISTINCT ptype FROM plats");
+                    // while ($row = $result2->fetch_assoc()) {
+                    //     $type = $row["ptype"];
+                    //     if ($type == $type_plat) {
+                    //         echo "<option value='$type' selected>$type</option>";
+                    //     }
+                    //     else {
+                    //         echo "<option value='$type'>$type</option>";
+                    //     }
+                    // }
                     ?>
                 </select>
             </div>
