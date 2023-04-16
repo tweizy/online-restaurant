@@ -39,11 +39,14 @@ require_once("../include/db-connect.php");
             <a href="../login-register-Pages/change-password.php" class="bg-success"><i class="fa-solid fa-lock fa-lg"></i>Change Password</a>
         </div>
     </div>
-    <div class="container"><h1 style="margin-top: -2rem; margin-bottom: 2rem;">Plat du jour</h1></div>
+    <div class="container">
+        <h1 style="margin-top: -2rem; margin-bottom: 2rem;">Plat du jour</h1>
+    </div>
+
     <?php
         $result2 = $db->query("SELECT * FROM plats WHERE ptype ='plat du jour'");
         while ($row = $result2->fetch_assoc()) {?>
-            <div class="card" style="width: 18rem; margin-right: 30px; margin-bottom: 30px">
+            <div class="card" style="width: 18rem; margin-right: 30px; margin-bottom: 30px; margin-left: 120px">
                     <img style="max-height: 300px" class="card-img-top" src="../img/<?php echo $row["pname"] ?>.jpg" alt="<?php echo $row["pname"] ?>">
                     <div class="card-body">
                         <div>
@@ -53,13 +56,17 @@ require_once("../include/db-connect.php");
                         <p class="card-text"><?php echo $row["pdescription"] ?></p>
                         <div>
                             <p style="font-weight: bold;"><?php echo $row["price"]."$" ?></p>
-                            <a href="#" class="btn btn-primary">Commander</a>
+                            <div style="display:flex">
+                                <input type="number" value="1" name="quantity" style="width:30px; margin-right: 10px; border-radius: 5px">    
+                                <a href="#" class="btn btn-primary">Commander</a>           
+                            </div>
                         </div>
                     </div>
                     </div>
                     <?php
         }
     ?>
+    
     <div class="container"><h1 style="margin-top: -2rem; margin-bottom: 2rem;">Menu des Plats</h1></div>
 
 
@@ -82,7 +89,10 @@ require_once("../include/db-connect.php");
                         <p class="card-text"><?php echo $row["pdescription"] ?></p>
                         <div>
                             <p style="font-weight: bold;"><?php echo $row["price"]."$" ?></p>
-                            <a href="#" class="btn btn-primary">Commander</a>
+                            <div style="display:flex">
+                                <input type="number" value="1" name="quantity" style="width:30px; margin-right: 10px; border-radius: 5px">    
+                                <a href="#" class="btn btn-primary">Commander</a>           
+                            </div>
                         </div>
                     </div>
                     </div>
