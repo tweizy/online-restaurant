@@ -43,7 +43,7 @@ require_once '../include/db-connect.php';
 
             <div class="form-group">
                 <label for="nom">Nom du plat</label>
-                <input type="text" class="form-control" id="nom" name="nom">
+                <input type="text" class="form-control" id="nom" name="nom" required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -63,7 +63,7 @@ require_once '../include/db-connect.php';
             </div>
             <div class="form-group">
                 <label for="prix">Prix</label>
-                <input type="number" class="form-control" id="prix" step="0.01" name="prix">
+                <input type="number" class="form-control" id="prix" step="0.01" name="prix" required>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>

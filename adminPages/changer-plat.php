@@ -64,7 +64,7 @@ if (isset($_GET["id"])) {
 
             <div class="form-group">
                 <label for="nom">Nom du plat</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom_plat; ?>">
+                <input required type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom_plat; ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -89,7 +89,7 @@ if (isset($_GET["id"])) {
             </div>
             <div class="form-group">
                 <label for="prix">Prix</label>
-                <input type="number" class="form-control" id="prix" step="0.01" name="prix" value="<?php echo $prix; ?>">
+                <input required type="number" class="form-control" id="prix" step="0.01" name="prix" value="<?php echo $prix; ?>">
             </div>
             <button type="submit" class="btn btn-primary">Changer</button>
         </form>
