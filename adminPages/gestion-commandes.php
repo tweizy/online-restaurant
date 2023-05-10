@@ -53,6 +53,7 @@ require_once '../include/db-connect.php';
     if (isset($_GET["success"])) echo "<div class='alert alert-success mx-auto' style='width: 80vh;'>Statuts mis à jour avec succès.</div>";
     ?>
 
+
     <form class="container form" action="" method="post">
         <button class="btn btn-primary mb-3" type="submit">Appliquer</button>
         <table class="table table-bordered table-striped table-hover">

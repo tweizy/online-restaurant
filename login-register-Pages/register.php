@@ -11,7 +11,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-require_once("db-connect.php");
+require_once("../include/db-connect.php");
 
 $username = $password = "";
 $username_error = $password_error = "";
